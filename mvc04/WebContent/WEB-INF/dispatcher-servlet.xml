@@ -18,6 +18,18 @@
 	<!--      이 과정에서 Front Controller 가 갖고 있는 확장자의 형태로 구성한다. -->
 	<!-- 	- 『class=""』 속성은 Controller 객체의 클래스 경로 및 이름을 등록한다.  -->
 	
+	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@211.238.142.161:1521:xe"></property>
+		<property name="username" value="scott"></property>
+		<property name="password" value="tiger"></property>
+	</bean>
+	
+	<bean id="EmployeeDAO" class="com.test.mvc.EmployeeDAO">
+		<property name="dataSource">
+			<ref bean="remoteDataSource" />
+		</property>
+	</bean>
 	
 	
 </beans>
