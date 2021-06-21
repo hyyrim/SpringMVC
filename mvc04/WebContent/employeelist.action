@@ -1,0 +1,18 @@
+
+
+1. employeelist.action 요청을 받는다
+
+2. web.xml 에서 .action 으로 끝나는 요청은 dispatcher-servlet 으로 보낸다.
+	2-1. 인코딩 필터 등록 → CharacterEncodingFilter
+		 - 요청되는 모든 url을 맵핑시켜 CharacterEncodingFilter class(설계도)로 객체 생성
+		 - 필터에 파라미터 초기값 지정
+		   파라미터 name 은 encoding / value 는 UTF-8
+		 
+	
+3. dispatcher-servlet 에서 DAO 속성을 주입하고 
+   employeelist.action 가 요청되었다면 EmployeeListController 로 보낸다
+   
+4. EmployeeListContoller 에서 주입된 DAO 메소드를 이용해 
+   값을 얻어내고 (객체에 추가) EmployeeList.jsp(뷰 페이지)로 연결한다.
+   
+5. <최종> WEB-INF 에 있는 뷰페이지가 보여진다.
