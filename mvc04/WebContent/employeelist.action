@@ -1,4 +1,5 @@
 
+[MVC]
 
 1. employeelist.action 요청을 받는다
 
@@ -16,3 +17,30 @@
    값을 얻어내고 (객체에 추가) EmployeeList.jsp(뷰 페이지)로 연결한다.
    
 5. <최종> WEB-INF 에 있는 뷰페이지가 보여진다.
+
+
+------------------------------------------------------------------------------
+
+[JQuery]
+
+------------------------------------------------------------------------------
+
+[Ajax]
+
+1. Javascript 단에서 function 구성 (ajaxRequest)
+   → 『$.post(요청주소, 전송데이터, 응답액션처리)』
+   $.post("ajax.action", {positionId : $("#positionId").val()}, function(data)
+		{
+			$("#minBasicPay").html(data);
+		});	
+		
+   - 전송 데이터는 Json 형식으로 넘겨진다.
+   
+2. ajax.action 이 요청되면 dispatcher-servlet 에서 
+	DAO 를 주입하면서 AjaxController 로 넘겨준다.
+	 
+	<bean name="/ajax.action" class="com.test.mvc.AjaxController">
+		<property name="dao" ref="employeeDAO"></property>
+	</bean>
+
+3. 

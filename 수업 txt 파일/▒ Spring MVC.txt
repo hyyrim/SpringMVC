@@ -330,10 +330,25 @@ http://localhost:8090/mvc03/memberlist.action
 
 
 -----------------------------------------------------------------------------
+2021-06-22
 
-
-   #15. EmployeeInsertForm.jsp	→ 직원 데이터 입력 폼 페이지
+   #18. EmployeeInsertForm.jsp	→ 직원 데이터 입력 폼 페이지
    				   AJAX, jQuery 기능 포함
+
+   #19. EmployeeInsertFormController.java
+	(employinsertform.action)
+
+	직원 추가 > 폼의 데이터 체크 > employeeinsert.action
+
+
+   #20. AjaxController.java
+	(ajax.action)
+
+   #21. EmployeeInsertController.java
+	(employeeinsert.action)
+
+-----------------------------------------------------------------------------
+
    #16. EmployeeUpdateForm.jsp	→ 직원 데이터 수정 폼 페이지
    				   AJAX, jQuery 기능 포함
 
@@ -368,14 +383,11 @@ http://localhost:8090/mvc03/memberlist.action
 				   (입력, 수정, 삭제 기능 없음)
 
 
-   #31. EmployeeInsertFormController.java
-	(employinsertform.action)
 
-   #32. AjaxController.java
-	(ajax.action)
 
-   #33. EmployeeInsertController.java
-	(employeeinsert.action)
+
+
+
 
    #34. EmployeeUpdateFormController.java
 	(employeeupdateform.action)
