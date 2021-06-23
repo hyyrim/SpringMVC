@@ -52,7 +52,7 @@ public class RegionDAO implements IRegionDAO
 			region = new Region();
 			
 			region.setRegionId(rs.getString("REGIONID"));
-			region.setRegionName(rs.getString("REGIONID"));
+			region.setRegionName(rs.getString("REGIONNAME"));
 			region.setDelCheck(rs.getInt("DELCHECK"));
 			
 			result.add(region);

@@ -12,6 +12,43 @@
 <title>EmployeeList.jsp</title>
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/main.css">
 
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	$(function()
+	{
+		$(".updateBtn").click(function()
+		{
+			// 테스트
+			//alert("수정 버튼 클릭");
+			
+			/* employeeupdateform.action?name=한혜림&ssn1=xxx&ssn2=yyy */
+			// 1. 요청해야 하는 페이지가 employeeupdateform 이다.
+			// 2. 원래는 각각의 속성들을 이렇게 updateform 을 그리면서 안에
+			//	  값을 다 채운 형태를 그려야하는데 (속성값 하나하나 넘겨야 함)
+			
+			// 3. 이렇게 해야하는 것을 아이디만 넘겨서 객체형식으로 얻기 ★
+			// employee.action 페이지 요청
+			// employeeId 전송
+			$(location).attr("href", "employeeupdateform.action?employeeId=" + $(this).val());
+		});
+		
+		$(".deleteBtn").click(function()
+		{
+			// 테스트
+			//alert("삭제 버튼 클릭");
+			
+			// 별도의 폼(페이지)이 필요 없기 때문에 ...
+			if (confirm("현재 선택한 데이터를 정말 삭제하시겠습니까?"))
+			{
+				$(location).attr("href", "employeedelete.action?employeeId=" + $(this).val());
+			}
+			
+		});
+	});
+	
+</script>
+
 </head>
 <body>
 
@@ -97,8 +134,10 @@
 				<%-- <td>${employee.grade}</td> --%>
 				<td>${employee.grade==0 ? "관리자" : "일반직원"}</td>
 				
-				<td><button type="button" class="btn">수정</button></td>
-				<td><button type="button" class="btn">삭제</button></td>	
+				<td><button type="button" class="btn updateBtn"
+				value="${employee.employeeId }">수정</button></td>
+				<td><button type="button" class="btn deleteBtn"
+				value="${employee.employeeId }">삭제</button></td>	
 			</tr>		
 			</c:forEach>
 			

@@ -346,7 +346,7 @@ public class EmployeeDAO implements IEmployeeDAO
 			employee.setRegionId(rs.getString("REGIONID"));
 			employee.setBasicPay(rs.getInt("BASICPAY"));
 			employee.setExtraPay(rs.getInt("EXTRAPAY"));
-			employee.setPay(rs.getInt("PAY"));
+			//employee.setPay(rs.getInt("PAY"));
 			
 			
 		}

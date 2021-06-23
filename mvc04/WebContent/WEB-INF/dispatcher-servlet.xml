@@ -87,5 +87,21 @@
 		<property name="dao" ref="employeeDAO"></property>
 	</bean>
 	
+	<bean name="/employeeupdateform.action" class="com.test.mvc.EmployeeUpdateFormController">
+		<!-- <property name="dao" ref="employeeDAO"></property> -->
+		<property name="employeeDAO" ref="employeeDAO"></property>
+		<property name="regionDAO" ref="regionDAO"></property>
+		<property name="departmentDAO" ref="departmentDAO"></property>
+		<property name="positionDAO" ref="positionDAO"></property>
+	</bean>
+	
+	<bean name="/employeeupdate.action" class="com.test.mvc.EmployeeUpdateController">
+		<property name="employeeDAO" ref="employeeDAO"></property>
+	</bean>
+	
+	<bean name="/employeedelete.action" class="com.test.mvc.EmployeeDeleteController">
+		<property name="employeeDAO" ref="employeeDAO"></property>
+	</bean>
+	
 	
 </beans>
