@@ -103,5 +103,22 @@
 		<property name="employeeDAO" ref="employeeDAO"></property>
 	</bean>
 	
+	<bean name="/emplist.action" class="com.test.mvc.EmpListController">
+		<property name="dao" ref="employeeDAO"></property>
+	</bean>
+	
+	<!-- Department 관련 Controller 등록 -->
+	<bean name="/departmentlist.action" class="com.test.mvc.DepartmentListController">
+		<property name="dao" ref="departmentDAO"></property>
+	</bean>
+	
+	<!-- Login 및 Logout 관련 Controller -->
+	<bean name="/loginform.action" class="com.test.mvc.LoginFormController"></bean>
+	
+	<bean name="/login.action" class="com.test.mvc.LoginController">
+		<property name="dao" ref="employeeDAO"></property>
+	</bean>
+	
+	<bean name="/logout.action" class="com.test.mvc.LogoutController"></bean>
 	
 </beans>

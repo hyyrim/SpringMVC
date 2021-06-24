@@ -20,10 +20,9 @@ public class SampleController implements Controller
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		
-		// 액션 코드 		
+		// 액션 코드 
+
 		ModelAndView mav = new ModelAndView();
-		
 		
 		
 		
