@@ -13,6 +13,29 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 
+		$(function()
+		{
+			$(".updateBtn").click(function()
+			{
+				// 테스트
+				//alert("버튼 확인");
+			
+				$(location).attr("href", "departmentupdateform.action?departmentId=" + $(this).val());
+			});
+			
+			$(".deleteBtn").click(function()
+			{
+				// 테스트
+				//alert("버튼 확인");
+				
+				// 별도의 폼(페이지)이 필요 없기 때문에 ...
+				if (confirm("현재 선택한 데이터를 정말 삭제하시겠습니까?"))
+				{
+					$(location).attr("href", "departmentdelete.action?departmentId=" + $(this).val());
+				}
+				
+			});
+		});
 </script>
 
 </head>
@@ -58,7 +81,9 @@
 				<td><button type="button" class="btn updateBtn"
 				value="">수정</button></td>
 				<td><button type="button" class="btn deleteBtn"
-				value="">삭제</button></td>	
+				value="" ${department.delCheck==0 ? "" : "disabled='disabled'"}
+				>삭제</button></td>	
+		
 			</tr>
 			</c:forEach>
 		</table>

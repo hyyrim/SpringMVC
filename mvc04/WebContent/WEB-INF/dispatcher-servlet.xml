@@ -112,6 +112,20 @@
 		<property name="dao" ref="departmentDAO"></property>
 	</bean>
 	
+	<bean name="/departmentinsertform.action" class="com.test.mvc.DepartmentInsertFormController">
+		<property name="dao" ref="departmentDAO"></property>
+	</bean>
+	
+	<bean name="/departmentinsert.action" class="com.test.mvc.DepartmentInsertController">
+		<property name="dao" ref="departmentDAO"></property>
+	</bean>
+	
+	<bean name="/departmentupdateform.action" class="com.test.mvc.DepartmentUpdateFormController">
+		<property name="dao" ref="departmentDAO"></property>
+	</bean>
+	
+	
+	
 	<!-- Login 및 Logout 관련 Controller -->
 	<bean name="/loginform.action" class="com.test.mvc.LoginFormController"></bean>
 	
