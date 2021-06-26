@@ -79,9 +79,9 @@
 				<td>${department.departmentName }</td>
 				 
 				<td><button type="button" class="btn updateBtn"
-				value="">수정</button></td>
+				value="${department.departmentId }">수정</button></td>
 				<td><button type="button" class="btn deleteBtn"
-				value="" ${department.delCheck==0 ? "" : "disabled='disabled'"}
+				value="${department.departmentId }" ${department.delCheck==0 ? "" : "disabled='disabled'"}
 				>삭제</button></td>	
 		
 			</tr>

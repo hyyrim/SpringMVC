@@ -1,0 +1,20 @@
+1. web.xml 
+   1-1.servlet mapping 
+   1-2. 인코딩 필터 등록
+
+2. dispatcher-servlet.xml
+   2-1. <context:component-scan	base-package="com.test.mvc" /> 
+        이렇게 써놓으면 Spring 에서 알아서 Controller 등록
+        
+3. com.test.mvc → HelloController.java
+   3-1. 비즈니스 로직 처리(모델 활용) 
+   @RequestMapping("/hello.action") → hello.action이란 url을 받으면 여러 컨트롤러 중 해당 컨트롤러 호출
+		public String hello(Model model) → 모델을 이용해도 되고 ModelAndView 이용해도 되고 .. 
+		{						
+			model.addAttribute("hello", "Hello, SpringMVCAnnotation World"); → hello 에 Hello, Spring … 담아서	
+			
+			return "/WEB-INF/views/Hello.jsp";	→ Hello.jsp 에 보내기
+		}
+		
+4. Hello.jsp
+   4-1. model 로 수신한 결과를 출력

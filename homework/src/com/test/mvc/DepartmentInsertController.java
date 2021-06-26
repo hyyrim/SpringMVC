@@ -22,9 +22,17 @@ import org.springframework.web.servlet.mvc.Controller;
 
 public class DepartmentInsertController implements Controller      // get방식이든 post방식이든 Controller가 다 받음
 {
+	
+	private IDepartmentDAO dao;
+	
+	
+   public void setDao(IDepartmentDAO dao)
+	{
+		this.dao = dao;
+	}
 
 
-   @Override
+@Override
    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
    {
       // 액션 코드 

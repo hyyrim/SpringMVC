@@ -344,13 +344,27 @@ http://localhost:8090/mvc03/memberlist.action
    #20. AjaxController.java
 	(ajax.action)
 
-   #21. EmployeeInsertController.java
+   #21. Ajax.jsp		→ AJAX 객체 구성 페이지
+
+   #22. EmployeeInsertController.java
 	(employeeinsert.action)
 
 -----------------------------------------------------------------------------
+2021-06-23
 
-   #16. EmployeeUpdateForm.jsp	→ 직원 데이터 수정 폼 페이지
+   #23. EmployeeUpdateForm.jsp	→ 직원 데이터 수정 폼 페이지
    				   AJAX, jQuery 기능 포함
+
+   #24. EmployeeUpdateFormController.java
+	(employeeupdateform.action)
+
+   #25. EmployeeUpdatetController.java
+	(employeeupdate.action)
+
+   #26. EmployeeDeleteController.java
+	(employeedelete.action)
+
+-----------------------------------------------------------------------------
 
    #17. DepartmentList.jsp	→ 부서 리스트 출력 페이지
 
@@ -373,7 +387,7 @@ http://localhost:8090/mvc03/memberlist.action
    #25. PositionUpdateForm.jsp	→ 직위 데이터 수정 폼 페이지
 
 
-   #26. Ajax.jsp		→ AJAX 객체 구성 페이지
+
 
    #27. LoginForm.jsp		→ 관리자, 일반직원 로그인 폼 페이지
 
@@ -383,20 +397,6 @@ http://localhost:8090/mvc03/memberlist.action
 				   (입력, 수정, 삭제 기능 없음)
 
 
-
-
-
-
-
-
-   #34. EmployeeUpdateFormController.java
-	(employeeupdateform.action)
-
-   #35. EmployeeUpdatetController.java
-	(employeeupdate.action)
-
-   #36. EmployeeDeleteController.java
-	(employeedelete.action)
 
    #37. DepartmentListController.java
    #38. DepartmentInsertFormController.java
@@ -438,8 +438,31 @@ http://localhost:8090/mvc03/memberlist.action
 http://localhost:8090/mvc04/employeelist.action
 
 
-
      
+---------------------------------------------------------------------------
+■■■ Spring MVC 프로젝트 실습 05 ■■■
 
+○ Perspective
+   : JavaEE
+○ 다이나믹 웹 프로젝트 생성
+   : mvc05
 
-	
+○기본 환경 구성 및 라이브러리 설정
+   : mvc00(우리가 임의로 만들어둔 샘플)로 부터
+     src, WebContent 디렉터리 복사 & 붙여넣기(덮어쓰기)
+
+○ 실습 성격
+   : 직원 관리 프로그램 (Spring MVC 버전)
+     JDBC 모듈 추가 활용
+     SimpleDriverDataSource 클래스 활용
+
+○ 기능 구현
+   - 직원 정보 출력, 입력, 삭제, 수정 기능 구현
+   - 지역 정보 출력, 입력, 삭제, 수정 기능 구현
+   - 부서 정보 출력, 입력, 삭제, 수정 기능 구현
+   - 직위 정보 출력, 입력, 삭제, 수정 기능 구현
+   - 로그인 / 로그아웃 기능 구현
+     → 관리자 및 일반 직원 로그인 구분
+   ==> Spring MVC, JSP/Servlet, ORACLE, HTML/CSS/Javascript, AJAX
+       , jQuery, EL, JSTL 표현 등 사용
+

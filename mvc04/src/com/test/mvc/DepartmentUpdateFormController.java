@@ -34,14 +34,12 @@ public class DepartmentUpdateFormController implements Controller
 		ModelAndView mav = new ModelAndView();
 		
 		String departmentId = request.getParameter("departmentId");
-		String department = request.getParameter("departmentName");
 		
 		try
 		{
 			Department department = new Department();
-			department.setDepartmentName(departmentName);
 			
-			dao.modify(department);
+			department = dao.searchId(departmentId);
 			
 			mav.addObject("department", department);
 			mav.setViewName("/WEB-INF/views/DepartmentUpdateForm.jsp");
@@ -50,8 +48,6 @@ public class DepartmentUpdateFormController implements Controller
 		{
 			System.out.println(e.toString());
 		}
-		
-	
 		
 		
 		return mav;

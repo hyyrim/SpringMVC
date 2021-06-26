@@ -1,0 +1,11 @@
+List.jsp -> 수정버튼 -> "updateform.action?Id=" + $(this).val();
+
+dispatcher-servlert.xml 에서 updateform.action 받으면 Controller 로 보내줌
+
+UpdateFormController.java -> UpdateForm.jsp 로 보내줌
+
+UpdateForm에서 submit되면 form action="update.action"
+
+dispatcher-servlert.xml 에서 update.action 받으면 Controller 로 보내줌
+
+UpdateController.java -> redirect:list.action

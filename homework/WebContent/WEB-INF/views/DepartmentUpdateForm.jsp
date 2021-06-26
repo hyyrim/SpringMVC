@@ -75,7 +75,7 @@
          	<tr>
          	   <th>부서번호</th>
          	   <td>
-         	   	  <input type="text" id="regionId" name="regionId" value="${department.departmentId }" readonly="readonly">
+         	   	  <input type="text" id="departmentId" name="departmentId" value="${department.departmentId }" readonly="readonly">
          	   </td>
          	</tr>
             <tr>

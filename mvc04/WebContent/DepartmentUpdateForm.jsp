@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>DepartmentInsertForm.jsp</title>
+<title>DepartmentUpdateForm.jsp</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 
@@ -23,7 +23,7 @@
 				return;
 			}
 			
-			$("#departmentForm").submit();
+			$("#departmentUpdateForm").submit();
 		});	
 	});
 
@@ -32,11 +32,6 @@
 </head>
 <body>
 
-
-<!--------------------------------------------------
-	#18. EmployeeInsertForm.jsp
-	- 직원 데이터 입력 폼 페이지
---------------------------------------------------->
 
 <div>
 
@@ -48,10 +43,10 @@
 	<!-- 콘텐츠 영역 -->
 	<div id="content">
 	
-		<h1>[ 부서 추가 ]</h1>
+		<h1>[ 부서 수정 ]</h1>
 		<hr>
 		
-		<form action="departmentinsert.action" method="post" id="departmentForm">
+		<form action="departmentupdate.action" method="post" id="departmentUpdateForm">
 			<table>
 				<tr>
 					<th>부서번호</th>
