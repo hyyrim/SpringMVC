@@ -16,21 +16,21 @@ import org.springframework.web.servlet.mvc.Controller;
 
 // ※ Spring 의 『Controller』 인터페이스를 구현하는 방법을 통해
 //	  사용자 정의 컨트롤러 클래스를 구현한다.	  
-public class DepartmentInsertFormController implements Controller
+public class RegionListController implements Controller
 {
-
-    private IDepartmentDAO dao;
-
-    public void setDao(IDepartmentDAO dao)
-    {
-       this.dao = dao;
-    }
-
+	
+	private IRegionDAO dao;
+	
+	public void setDao(IRegionDAO dao)
+	{
+		this.dao = dao;
+	}
 
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		
 		ModelAndView mav = new ModelAndView();
 		
 		// 세션 처리과정 추가 ---------------------------------------------------
@@ -48,15 +48,25 @@ public class DepartmentInsertFormController implements Controller
 			return mav;
 		}
 		
+		ArrayList<Region> regionList = new ArrayList<Region>();
+		
 		try
-		{			
-			mav.setViewName("WEB-INF/views/DepartmentInsertForm.jsp");
+		{
+			
+			regionList = dao.list();
+			
+			mav.addObject("regionList", regionList);
+			mav.setViewName("/WEB-INF/views/RegionList.jsp");
+			
 			
 		} catch (Exception e)
 		{
 			System.out.println(e.toString());
 		}
-	      
+		
+		
+		
+		
 		return mav;
 		
 	}

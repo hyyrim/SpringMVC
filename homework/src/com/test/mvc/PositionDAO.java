@@ -74,7 +74,7 @@ public class PositionDAO implements IPositionDAO
 		
 		Connection conn = dataSource.getConnection();
 		
-		String sql = "SELECT POSITIONID, POSITIONNAME, DELCHECK FROM POSITIONVIEW WHERE POSITIONID = ?";
+		String sql = "SELECT POSITIONID, POSITIONNAME, MINBASICPAY, DELCHECK FROM POSITIONVIEW WHERE POSITIONID = ?";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, positionId);
@@ -84,6 +84,7 @@ public class PositionDAO implements IPositionDAO
 		{	
 			result.setPositionId(rs.getString("POSITIONID"));
 			result.setPositionName(rs.getString("POSITIONNAME"));
+			result.setMinBasicPay(rs.getInt("MINBASICPAY"));
 			result.setDelCheck(rs.getInt("DELCHECK"));
 		}
 		

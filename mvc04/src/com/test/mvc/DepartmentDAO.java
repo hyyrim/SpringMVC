@@ -150,15 +150,15 @@ public class DepartmentDAO implements IDepartmentDAO
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
-		pstmt.setString(1,departmentId);
+		pstmt.setInt(1,Integer.parseInt(departmentId));
 		
 		ResultSet rs = pstmt.executeQuery();
 		
 		while (rs.next())
 		{
-			department.setDepartmentId("DEPARTMENTID");
-			department.setDepartmentName("DEPARTMENTNAME");
-			department.setDelCheck(Integer.parseInt("DELCHECK"));
+			department.setDepartmentId(rs.getString("DEPARTMENTID"));
+			department.setDepartmentName(rs.getString("DEPARTMENTNAME"));
+			department.setDelCheck(rs.getInt("DELCHECK"));
 		}
 		
 		rs.close();
@@ -166,6 +166,32 @@ public class DepartmentDAO implements IDepartmentDAO
 		conn.close();
 		
 		return department;
+	}
+
+	@Override
+	public int count(String departmentName) throws SQLException
+	{
+		int result = 0;
+		
+		Connection conn = dataSource.getConnection();
+		
+		String sql = "SELECT COUNT(*) AS COUNT FROM DEPARTMENT WHERE DEPARTMENTNAME = ?";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, departmentName);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next())
+		{
+			result = rs.getInt("COUNT");
+		}
+		
+		rs.close();
+		pstmt.close();
+		conn.close();
+		
+		return result;
 	}
 	
 	

@@ -699,4 +699,11 @@ WHERE EMPLOYEEID=1;
 --> 한 줄 구성
 SELECT EMPLOYEEID, NAME, SSN1, TO_CHAR(BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY , LUNAR, TELEPHONE, DEPARTMENTID, POSITIONID, REGIONID, BASICPAY, EXTRAPAY FROM EMPLOYEE WHERE EMPLOYEEID=1
 ;
-                                                                                                       
+                                       
+
+SELECT REGIONID, REGIONNAME, DELCHECK
+FROM REGIONVIEW
+WHERE REGIONID = 1;                                                                
+-->
+SELECT REGIONID, REGIONNAME, DELCHECK FROM REGIONVIEW WHERE REGIONID = 1
+;
