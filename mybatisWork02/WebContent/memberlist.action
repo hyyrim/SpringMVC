@@ -1,0 +1,60 @@
+
+1. SQL Developer 쿼리문 작성
+
+2. MemberDTO.java
+   - 속성 구성 
+   - getter / setter 구성
+ 
+3. IMemberDAO.java
+   - 인터페이스 
+   - 만들 메소드 구성
+   
+4. MemberDAO.xml
+   - IMemberDAO 를 구현하는 mybatis 타입(?) xml
+   - select / update / insert / delete
+   - 쿼리문을 안에 넣으면 됨
+   
+5. dispatcher-servlet.xml
+   - <context:component-scan base-package="com.test.mybatis" />
+     →  Spring Container 가 일 하는 부분 com.test.mybatis 안에 
+         @Controller 라고 표시해놨어 그게 너가 찾는 설계도야
+   
+   - ① sqlSessionFactoryBean (Builder 대체 / Builder는 설정해야 할 속성값이 많기때문)
+        이 때 2가지 속성 구성 
+        1. dataSource
+        2. mapperLocations
+        
+   - ② myBatis 설정 중 dataSource 를 설정하기 위해 SimpleDriverDataSource 등록
+   - ③ MemberDAO.xml 작성 후 MapperLocations 등록         
+   
+   ※ ②, ③ 을 완료 후 ①-1, ①-2 진행
+   
+   - ④ SqlSessionTemplate
+        → sqlSessionFactory 생성자 주입
+        
+6. MemberMain.java
+	@Controller
+	public class MemberMain
+	{
+		// mybatis 객체 의존성 (자동) 주입~!!!
+		@Autowired	// 스프링컨테이너 → dispatcher-servlet → 자동으로 연결
+		private SqlSession sqlSession;
+		
+		@RequestMapping(value = "/memberlist.action", method=RequestMethod.GET)
+		public String memberList(ModelMap model)
+		{
+			// IMemberDAO dao = MemberDAO 객체 생성
+			IMemberDAO dao = sqlSession.getMapper(IMemberDAO.class);
+			
+			model.addAttribute("count", dao.count());
+			model.addAttribute("list", dao.list());
+			
+			return "WEB-INF/views/MemberList.jsp";
+		}
+	}
+	
+7. MemberList.jsp 뷰페이지 작업
+   - jQuery 
+   - Bootstrap
+	      
+ 
