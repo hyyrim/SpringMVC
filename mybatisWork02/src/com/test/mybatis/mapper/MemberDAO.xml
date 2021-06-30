@@ -21,15 +21,20 @@
 	
 	<insert id="add">
 		INSERT INTO TBL_MEMBERLIST(MID, NAME, TELEPHONE)
-		VALUES(MEMBERLISTSEQ.NEXTVAL, '전혜림', '010-1111-1111')
+		VALUES(MEMBERLISTSEQ.NEXTVAL, #{name}, #{telephone})
 	</insert>
 	
 	<delete id="remove">
 		DELETE
 		FROM TBL_MEMBERLIST
-		WHERE MID=1
+		WHERE MID=#{mid}
 	</delete>
 	
+	<update id="modify">
+		UPDATE TBL_MEMBERLIST
+		SET NAME = #{name}, TELEPHONE = #{telephone}
+		WHERE MID = #{mid}
+	</update>
 	
 </mapper>
     

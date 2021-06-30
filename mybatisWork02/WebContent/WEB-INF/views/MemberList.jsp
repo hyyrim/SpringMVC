@@ -19,6 +19,48 @@
 <!-- 부트스트랩 script -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+
+	$(function()
+	{
+		$(".btnDelete").click(function()
+		{
+			if (confirm("현재 선택한 데이터를 정말 삭제하시겠습니까?"))
+			{
+				$(location).attr("href", "memberdelete.action?mid=" + $(this).val())
+			}
+		});
+		
+		$(".btnUpdate").click(function()
+		{
+			$("#title").html("회원 정보 수정").css({"color":"red", "font-weight":"bold"});
+			
+			var mid = $(this).parents("tr").find("td:eq(0)").text();
+			var name = $(this).parents("tr").find("td:eq(1)").text();
+			var telephone = $(this).parents("tr").find("td:eq(2)").text();
+			
+			/* form 안에 값 채우기 */
+			$("#mid").val(mid);
+			$("#name").val(name);
+			$("#telephone").val(telephone);
+			
+			/* form이 하나이기 때문에 forms 아니고 form */
+			/* role 엘리먼트 잡은것 */
+			/* 현재 action에서 memberupdate.action 으로 바꾸겠다 라는 의미 */
+			$("form").attr("action", "memberupdate.action");
+			
+		});
+		
+		$(".btnCancel").click(function()
+		{
+			$("#title").html("회원 정보 입력").css({"color":"black", "font-weight":"normal"});
+			
+			$("form").attr("action", "memberinsert.action");
+			
+		});
+	});
+
+</script>
 
 
 </head>
@@ -38,6 +80,8 @@
 			
 			<div class="panel-body">
 				<form role="form" action="memberinsert.action" method="post">
+						
+					<input type="hidden" id="mid" name="mid">
 						
 					<div class="form-group">
 						<label for="name">
@@ -104,8 +148,10 @@
 						 	<td>${member.name }</td>
 						 	<td>${member.telephone }</td>
 						 	<td>
-								<button type="button" class="btn btn-danger btn-xs btnDelete">삭제</button>
-								<button type="button" class="btn btn-primary btn-xs btnUpdate">수정</button>
+								<button type="button" class="btn btn-danger btn-xs btnDelete"
+								value="${member.mid}">삭제</button>
+								<button type="button" class="btn btn-primary btn-xs btnUpdate"
+								value="${member.mid}">수정</button>
 							</td>
 						 </tr>
 						 </c:forEach>
