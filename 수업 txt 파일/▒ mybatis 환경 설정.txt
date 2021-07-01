@@ -166,10 +166,10 @@ http://localhost:8090/mybatisWork02/memberlist.action
    - IGradeDAO.java		→ 인터페이스
 
    - StudentDAO.xml		→ mybatis 환경 설정 파일 활용
-   - GradeDAO.xml		→ mybatis 환경 설정 파일 활용
+   - GradeDAO.xml		→ mybatis 환경 설정 파일 활용		-- 생략
 
    - StudentController.java	→ mybatis 객체 활용(Controller)
-   - GradeController.java	→ mybatis 객체 활용(Controller)
+   - GradeController.java	→ mybatis 객체 활용(Controller)	-- 생략
 
    - StudentList.jsp		→ View 페이지 (학생 명단 출력 레이아웃 구성)
    - StudentInsertForm.jsp	→ View 페이지 (학생 데이터 입력 폼 구성)

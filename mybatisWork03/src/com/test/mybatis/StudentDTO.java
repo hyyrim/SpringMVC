@@ -1,49 +1,47 @@
+/*=======================
+	StudentDTO.java
+=======================*/
+
 package com.test.mybatis;
 
 public class StudentDTO
 {
-	private String sid, name, tel, check;
+	// 주요 속성 구성
+	private String sid, name, tel;	//-- 아이디, 이름, 전화번호
+	private int sub;				//-- 참조하는 레코드 수
 	
-
 	// getter / setter 구성
 	public String getSid()
 	{
 		return sid;
 	}
-
 	public void setSid(String sid)
 	{
 		this.sid = sid;
 	}
-
 	public String getName()
 	{
 		return name;
 	}
-
 	public void setName(String name)
 	{
 		this.name = name;
 	}
-
 	public String getTel()
 	{
 		return tel;
 	}
-
 	public void setTel(String tel)
 	{
 		this.tel = tel;
 	}
-	
-	public String getCheck()
+	public int getSub()
 	{
-		return check;
+		return sub;
 	}
-
-	public void setCheck(String check)
+	public void setSub(int sub)
 	{
-		this.check = check;
+		this.sub = sub;
 	}
 	
 	

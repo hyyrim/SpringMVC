@@ -24,6 +24,11 @@ CREATE TABLE TBL_GRADE
 );
 --==> Table TBL_GRADE이(가) 생성되었습니다.
 
+--○ 제약조건 추가
+ALTER TABLE tbl_grade ADD CONSTRAINT sub1_ck CHECK(sub1 BETWEEN 0 AND 100);
+ALTER TABLE tbl_grade ADD CONSTRAINT sub2_ck CHECK(sub2 BETWEEN 0 AND 100);
+ALTER TABLE tbl_grade ADD CONSTRAINT sub3_ck CHECK(sub3 BETWEEN 0 AND 100);
+
 --○ 시퀀스 생성 (TBL_STUDENT)
 CREATE SEQUENCE SEQ_STUDENT
 NOCACHE;
@@ -44,6 +49,14 @@ INSERT INTO TBL_STUDENT(SID, NAME, TEL)
 VALUES(SEQ_STUDENT.NEXTVAL, '이무림', '010-2222-2222');
 --==> 1 행 이(가) 삽입되었습니다.
 
+INSERT INTO TBL_STUDENT(SID, NAME, TEL)
+VALUES(SEQ_STUDENT.NEXTVAL, '쥬만지', '010-3333-3333');
+--==> 1 행 이(가) 삽입되었습니다.
+
+INSERT INTO TBL_STUDENT(SID, NAME, TEL)
+VALUES(SEQ_STUDENT.NEXTVAL, '리히주', '010-4444-4444');
+--==> 1 행 이(가) 삽입되었습니다.
+
 
 INSERT INTO TBL_GRADE(SID, SUB1, SUB2, SUB3)
 VALUES(SEQ_GRADE.NEXTVAL, 100, 50, 90);
@@ -53,6 +66,19 @@ VALUES(SEQ_GRADE.NEXTVAL, 100, 50, 90);
 INSERT INTO TBL_GRADE(SID, SUB1, SUB2, SUB3)
 VALUES(SEQ_GRADE.NEXTVAL, 80, 90, 70);
 --==> 1 행 이(가) 삽입되었습니다.
+
+INSERT INTO TBL_GRADE(SID, SUB1, SUB2, SUB3)
+VALUES(SEQ_GRADE.NEXTVAL, 20, 100, 40);
+--==> 1 행 이(가) 삽입되었습니다.
+
+INSERT INTO TBL_GRADE(SID, SUB1, SUB2, SUB3)
+VALUES(SEQ_GRADE.NEXTVAL, 80, 90, 100);
+--==> 1 행 이(가) 삽입되었습니다.
+
+
+--○ 커밋
+COMMIT;
+--==> 커밋 완료.
 
 
 --○ 데이터 삭제
@@ -72,28 +98,32 @@ FROM TBL_STUDENT;
 SELECT *
 FROM TBL_GRADE;
 
---○ 뷰 생성
+--○ 뷰 생성 (STUDENTVIEW)
 CREATE OR REPLACE VIEW STUDENTVIEW
 AS
-SELECT SID, NAME, TEL, (SELECT COUNT(*)
-                        FROM TBL_GRADE) AS SUB
-FROM TBL_STUDENT;
+SELECT SID, NAME, TEL
+      , (SELECT COUNT(*)
+         FROM TBL_GRADE
+         WHERE SID = S.SID) AS SUB
+FROM TBL_STUDENT S;
 --==> View STUDENTVIEW이(가) 생성되었습니다.
 
-
+--○ 뷰 생성 (GRADEVIEW)
 CREATE OR REPLACE VIEW GRADEVIEW
 AS
-SELECT SID, NAME, SUB1, SUB2, SUB3, TOT, ROUND((TOT/3), 2) AS AVG, 
-CASE WHEN( TOT/3 ) >= 60 THEN '합격'
-     WHEN( TOT/3 ) < 60 THEN '불합격'
-     ELSE '과락'
-END GRADE
-FROM
-(
-  SELECT G.SID,S.NAME,G.SUB1,G.SUB2,G.SUB3, (G.SUB1+G.SUB2+G.SUB3) AS TOT
-  FROM TBL_GRADE G, TBL_STUDENT S
-  WHERE G.SID = S.SID
- );
+SELECT S.SID AS SID
+     , S.NAME AS NAME
+     , G.SUB1 AS SUB1
+     , G.SUB2 AS SUB2
+     , G.SUB3 AS SUB3
+     , (G.SUB1 + G.SUB2 + G.SUB3) AS TOT
+     , ROUND((G.SUB1 + G.SUB2 + G.SUB3)/3,2) AS AVG
+     , (CASE WHEN (G.SUB1 + G.SUB2 + G.SUB3)/3 < 60 THEN '불합격'
+             WHEN (G.SUB1<=40) OR (G.SUB2<=40) OR (G.SUB3<=40)  THEN '과락'
+             ELSE '합격'
+             END) AS CH
+FROM TBL_STUDENT S LEFT JOIN TBL_GRADE G
+ON S.SID = G.SID;
 --==> View GRADEVIEW이(가) 생성되었습니다.
 
 
@@ -101,10 +131,39 @@ FROM
 SELECT SID, NAME, TEL, SUB
 FROM STUDENTVIEW
 ORDER BY SID;
+--==> 
+/*
+1	한혜림	010-1111-1111	1
+2	이무림	010-2222-2222	1
+3	쥬만지	010-3333-3333	1
+4	리히주	010-4444-4444	1
+*/
 
-SELECT *
+SELECT SID, NAME, SUB1, SUB2, SUB3, TOT, AVG, CH
 FROM GRADEVIEW;
+--==>
+/*
+1	한혜림	100	50	90	240	80	합격
+2	이무림	80	90	70	240	80	합격
+3	쥬만지	20	100	40	160	53.33	불합격
+4	리히주	80	90	100	270	90	합격
+*/
 
+-- 많이 실수하는 부분
+-- 이렇게 테이블만들어서 참조해줘야할 것 같은데
+-- 이렇게 하면 안된다.
+-- 실제로 이 컬럼이 합격/불합격/과락 으로 들어가있는거랑 다를게없다.
+-- 결과값을 끌어다 쓰는것이기 때문에 의미없다.
+-- 무결성이 깨질 수 있다. → 90 90 90으로 성적이 변경되었는데
+-- 합격여부는 3번(과락) - (Ⅹ)
+-- 이렇게 되면 값이 바뀔 때 마다 합격여부를 확인해줘야함
+--※ 기존의 데이터로 얻어낼 수 있는 결과라면 테이블화/컬럼화 하지 않는다.
+/*
+GRADERESULT
+1 합격
+2 불합격
+3 과락
+*/
 
 --○ 카운트
 SELECT COUNT(*) AS COUNT
