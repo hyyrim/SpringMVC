@@ -25,6 +25,7 @@ public class GradeDTO
 	//	  상황에 따라 null 이 적용될 가능성이 농후한 컬럼의 경우
 	//	  String 자료형을 사용하는 것이 데이터를 컨트롤 하는 과정에서
 	//	  좀 더 유연할 수 있다는 것이다.
+
 	
 	// getter / setter 구성
 	public String getSid()
